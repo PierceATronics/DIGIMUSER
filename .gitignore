@@ -24,3 +24,16 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+#LTSpice 
+*.log
+*.raw
+
+#MATLAB
+*.asv
+*.m~
+*.mex*
+*.mlappinstall
+helpsearch*/
+
+
