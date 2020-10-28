@@ -435,9 +435,9 @@ Text GLabel 4775 6225 2    50   Input ~ 0
 3.3V
 Text GLabel 4775 6100 2    50   Input ~ 0
 GND
-Text GLabel 4775 5950 2    50   Output ~ 0
-BYPASS
 Text GLabel 4775 5825 2    50   Output ~ 0
+BYPASS
+Text GLabel 4775 5950 2    50   Output ~ 0
 ADC_IN
 Text GLabel 4775 5700 2    50   Input ~ 0
 GND
