@@ -585,4 +585,77 @@ Text Label 5350 3100 0    50   ~ 0
 FILT_IN
 Text Label 3850 3000 0    50   ~ 0
 AMP_IN
+$Comp
+L Mechanical:MountingHole_Pad H1
+U 1 1 5F9CD929
+P 1275 6975
+F 0 "H1" H 1375 6978 50  0000 L CNN
+F 1 "MountingHole_Pad" H 1375 6933 50  0001 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 1275 6975 50  0001 C CNN
+F 3 "~" H 1275 6975 50  0001 C CNN
+	1    1275 6975
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H2
+U 1 1 5F9CECAE
+P 1650 6975
+F 0 "H2" H 1750 6978 50  0000 L CNN
+F 1 "MountingHole_Pad" H 1750 6933 50  0001 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 1650 6975 50  0001 C CNN
+F 3 "~" H 1650 6975 50  0001 C CNN
+	1    1650 6975
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H3
+U 1 1 5F9CF11F
+P 2050 6975
+F 0 "H3" H 2150 6978 50  0000 L CNN
+F 1 "MountingHole_Pad" H 2150 6933 50  0001 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 2050 6975 50  0001 C CNN
+F 3 "~" H 2050 6975 50  0001 C CNN
+	1    2050 6975
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H4
+U 1 1 5F9CF59E
+P 2450 6975
+F 0 "H4" H 2550 6978 50  0000 L CNN
+F 1 "MountingHole_Pad" H 2550 6933 50  0001 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 2450 6975 50  0001 C CNN
+F 3 "~" H 2450 6975 50  0001 C CNN
+	1    2450 6975
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1275 7075 1275 7300
+Wire Wire Line
+	1275 7300 1650 7300
+Wire Wire Line
+	2450 7300 2450 7075
+Wire Wire Line
+	2050 7075 2050 7300
+Connection ~ 2050 7300
+Wire Wire Line
+	2050 7300 2450 7300
+Wire Wire Line
+	1650 7075 1650 7300
+Connection ~ 1650 7300
+Wire Wire Line
+	1650 7300 2050 7300
+Wire Wire Line
+	1650 7300 1650 7475
+$Comp
+L power:GND #PWR0102
+U 1 1 5F9D83D0
+P 1650 7475
+F 0 "#PWR0102" H 1650 7225 50  0001 C CNN
+F 1 "GND" H 1655 7302 50  0000 C CNN
+F 2 "" H 1650 7475 50  0001 C CNN
+F 3 "" H 1650 7475 50  0001 C CNN
+	1    1650 7475
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
