@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name teensy)(type Legacy)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/teensy_library-master/teensy_library-master/teensy.lib)(options "")(descr ""))
+  (lib (name CS5343CZZ)(type Legacy)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/CS5343CZZ/KiCAD/2020-11-03_00-33-15/CS5343CZZ.lib)(options "")(descr ""))
+)
