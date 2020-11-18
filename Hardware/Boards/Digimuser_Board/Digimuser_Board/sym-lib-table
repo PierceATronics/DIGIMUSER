@@ -1,4 +1,6 @@
 (sym_lib_table
   (lib (name teensy)(type Legacy)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/teensy_library-master/teensy_library-master/teensy.lib)(options "")(descr ""))
   (lib (name CS5343CZZ)(type Legacy)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/CS5343CZZ/KiCAD/2020-11-03_00-33-15/CS5343CZZ.lib)(options "")(descr ""))
+  (lib (name CS4344CZZ)(type Legacy)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/ul_CS4344CZZ/KiCAD/CS4344CZZ/CS4344CZZ.lib)(options "")(descr ""))
+  (lib (name MCP6271TEOT)(type Legacy)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/ul_MCP6271TEOT/KiCAD/MCP6271TEOT/MCP6271TEOT.lib)(options "")(descr ""))
 )
