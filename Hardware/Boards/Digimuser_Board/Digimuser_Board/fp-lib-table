@@ -1,0 +1,7 @@
+(fp_lib_table
+  (lib (name CS5343CZZ)(type KiCad)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/CS5343CZZ/KiCAD/2020-11-03_00-33-15/footprints.pretty)(options "")(descr ""))
+  (lib (name CS4344CZZ)(type KiCad)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/ul_CS4344CZZ/KiCAD/CS4344CZZ/footprints.pretty)(options "")(descr ""))
+  (lib (name teensy)(type KiCad)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/teensy.pretty-master/teensy.pretty-master)(options "")(descr ""))
+  (lib (name MCP6271TE0T)(type KiCad)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/ul_MCP6271TEOT/KiCAD/MCP6271TEOT/footprints.pretty)(options "")(descr ""))
+  (lib (name MCP6272-E_SN)(type KiCad)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/MCP6272-E_SN)(options "")(descr ""))
+)
