@@ -892,17 +892,6 @@ Wire Wire Line
 	8025 3550 8425 3550
 Connection ~ 8425 3550
 $Comp
-L Device:CP1 C13
-U 1 1 5FB97996
-P 9925 3700
-F 0 "C13" H 10040 3746 50  0000 L CNN
-F 1 "10u" H 10040 3655 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 9925 3700 50  0001 C CNN
-F 3 "~" H 9925 3700 50  0001 C CNN
-	1    9925 3700
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:C C16
 U 1 1 5FB9A56E
 P 10275 3100
@@ -1322,7 +1311,7 @@ U 1 1 5FC10267
 P 900 6725
 F 0 "U1" H 933 6950 50  0000 C CNN
 F 1 "R20407RR02Q" H 933 6859 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical" H 900 6725 50  0001 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x05_P2.54mm_Vertical" H 900 6725 50  0001 C CNN
 F 3 "" H 900 6725 50  0001 C CNN
 	1    900  6725
 	1    0    0    -1  
@@ -1669,4 +1658,15 @@ Wire Wire Line
 	10675 2950 10675 2850
 Connection ~ 10675 2950
 NoConn ~ 4875 5325
+$Comp
+L Device:CP1 C13
+U 1 1 5FB97996
+P 9925 3700
+F 0 "C13" H 10040 3746 50  0000 L CNN
+F 1 "10u" H 10040 3655 50  0000 L CNN
+F 2 "Capacitor_THT:C_Axial_L5.1mm_D3.1mm_P7.50mm_Horizontal" H 9925 3700 50  0001 C CNN
+F 3 "~" H 9925 3700 50  0001 C CNN
+	1    9925 3700
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
