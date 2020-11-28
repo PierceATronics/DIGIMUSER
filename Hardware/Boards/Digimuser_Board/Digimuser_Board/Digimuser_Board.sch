@@ -401,7 +401,7 @@ U 1 1 5F9CD929
 P 9825 5800
 F 0 "H1" H 9925 5803 50  0000 L CNN
 F 1 "MountingHole_Pad" H 9925 5758 50  0001 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 9825 5800 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2_Pad" H 9825 5800 50  0001 C CNN
 F 3 "~" H 9825 5800 50  0001 C CNN
 	1    9825 5800
 	1    0    0    -1  
@@ -412,7 +412,7 @@ U 1 1 5F9CECAE
 P 10200 5800
 F 0 "H2" H 10300 5803 50  0000 L CNN
 F 1 "MountingHole_Pad" H 10300 5758 50  0001 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 10200 5800 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2_Pad" H 10200 5800 50  0001 C CNN
 F 3 "~" H 10200 5800 50  0001 C CNN
 	1    10200 5800
 	1    0    0    -1  
@@ -423,20 +423,9 @@ U 1 1 5F9CF11F
 P 10600 5800
 F 0 "H3" H 10700 5803 50  0000 L CNN
 F 1 "MountingHole_Pad" H 10700 5758 50  0001 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 10600 5800 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2_Pad" H 10600 5800 50  0001 C CNN
 F 3 "~" H 10600 5800 50  0001 C CNN
 	1    10600 5800
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:MountingHole_Pad H4
-U 1 1 5F9CF59E
-P 11000 5800
-F 0 "H4" H 11100 5803 50  0000 L CNN
-F 1 "MountingHole_Pad" H 11100 5758 50  0001 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 11000 5800 50  0001 C CNN
-F 3 "~" H 11000 5800 50  0001 C CNN
-	1    11000 5800
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -444,12 +433,7 @@ Wire Wire Line
 Wire Wire Line
 	9825 6125 10200 6125
 Wire Wire Line
-	11000 6125 11000 5900
-Wire Wire Line
 	10600 5900 10600 6125
-Connection ~ 10600 6125
-Wire Wire Line
-	10600 6125 11000 6125
 Wire Wire Line
 	10200 5900 10200 6125
 Connection ~ 10200 6125
@@ -1286,38 +1270,10 @@ NoConn ~ 4875 6525
 NoConn ~ 4875 6625
 NoConn ~ 4875 6725
 NoConn ~ 4875 7025
-$Comp
-L Regulator_Linear:AMS1117CD-5.0 U2
-U 1 1 5FD128B2
-P 2275 3850
-F 0 "U2" H 2275 4092 50  0000 C CNN
-F 1 "AMS1117CD-5.0" H 2275 4001 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:TO-252-3_TabPin2" H 2275 4050 50  0001 C CNN
-F 3 "http://www.advanced-monolithic.com/pdf/ds1117.pdf" H 2375 3600 50  0001 C CNN
-	1    2275 3850
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector:Barrel_Jack J3
-U 1 1 5FD23849
-P 1000 3950
-F 0 "J3" H 1057 4275 50  0000 C CNN
-F 1 "Barrel_Jack" H 1057 4184 50  0000 C CNN
-F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 1050 3910 50  0001 C CNN
-F 3 "~" H 1050 3910 50  0001 C CNN
-	1    1000 3950
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	1300 3850 1975 3850
+	1300 3850 1775 3850
 Wire Wire Line
-	1300 4050 1625 4050
-Wire Wire Line
-	1625 4050 1625 4250
-Wire Wire Line
-	1625 4250 2275 4250
-Wire Wire Line
-	2275 4250 2275 4150
+	1300 4050 1350 4050
 $Comp
 L power:GND #PWR05
 U 1 1 5FD34EFF
@@ -1329,13 +1285,10 @@ F 3 "" H 2275 4300 50  0001 C CNN
 	1    2275 4300
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2275 4300 2275 4250
-Connection ~ 2275 4250
-Text Notes 675  4250 0    50   ~ 0
+Text Notes 725  3575 0    50   ~ 0
 +9V POWER SUPPLY
 Wire Wire Line
-	2575 3850 3125 3850
+	2575 3850 2650 3850
 Text GLabel 3125 3850 2    50   UnSpc ~ 0
 5V
 Text GLabel 5125 7075 2    50   UnSpc ~ 0
@@ -1649,4 +1602,83 @@ F 3 "~" H 6000 7125 50  0001 C CNN
 $EndComp
 Text Notes 6100 7025 0    50   ~ 0
 SLIDER_POT
+$Comp
+L Connector:Barrel_Jack_MountingPin J3
+U 1 1 5FC5DD80
+P 1000 3950
+F 0 "J3" H 1057 4267 50  0000 C CNN
+F 1 "Barrel_Jack_MountingPin" H 1057 4176 50  0000 C CNN
+F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 1050 3910 50  0001 C CNN
+F 3 "~" H 1050 3910 50  0001 C CNN
+	1    1000 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1000 4250 1000 4375
+Wire Wire Line
+	1000 4375 1350 4375
+Wire Wire Line
+	1350 4375 1350 4275
+Wire Wire Line
+	2275 4150 2275 4275
+$Comp
+L Device:C C22
+U 1 1 5FC79B88
+P 1775 4050
+F 0 "C22" H 1890 4096 50  0000 L CNN
+F 1 "0.33u" H 1890 4005 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 1813 3900 50  0001 C CNN
+F 3 "~" H 1775 4050 50  0001 C CNN
+	1    1775 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1775 3900 1775 3850
+Connection ~ 1775 3850
+Wire Wire Line
+	1775 3850 1975 3850
+Wire Wire Line
+	1775 4200 1775 4275
+Wire Wire Line
+	1775 4275 2275 4275
+Connection ~ 2275 4275
+Wire Wire Line
+	2275 4275 2275 4300
+Wire Wire Line
+	1775 4275 1350 4275
+Connection ~ 1775 4275
+Connection ~ 1350 4275
+Wire Wire Line
+	1350 4275 1350 4050
+$Comp
+L Device:C C23
+U 1 1 5FCA4CF6
+P 2650 4050
+F 0 "C23" H 2765 4096 50  0000 L CNN
+F 1 "0.1u" H 2765 4005 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 2688 3900 50  0001 C CNN
+F 3 "~" H 2650 4050 50  0001 C CNN
+	1    2650 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 3900 2650 3850
+Connection ~ 2650 3850
+Wire Wire Line
+	2650 3850 3125 3850
+Wire Wire Line
+	2650 4200 2650 4275
+Wire Wire Line
+	2650 4275 2275 4275
+$Comp
+L Regulator_Linear:AP2204R-5.0 U2
+U 1 1 5FCD2989
+P 2275 3850
+F 0 "U2" H 2275 4092 50  0000 C CNN
+F 1 "UA78M05IDCYR" H 2275 4001 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223" H 2275 4075 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/AP2204.pdf" H 2275 3850 50  0001 C CNN
+	1    2275 3850
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
