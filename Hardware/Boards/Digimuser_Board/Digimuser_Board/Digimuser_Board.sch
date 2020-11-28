@@ -329,51 +329,12 @@ F 3 "~" H 1950 1400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:PWR_FLAG #FLG02
-U 1 1 5F936862
-P 9500 5975
-F 0 "#FLG02" H 9500 6050 50  0001 C CNN
-F 1 "PWR_FLAG" H 9500 6148 50  0000 C CNN
-F 2 "" H 9500 5975 50  0001 C CNN
-F 3 "~" H 9500 5975 50  0001 C CNN
-	1    9500 5975
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR022
-U 1 1 5F936CB6
-P 9500 6150
-F 0 "#PWR022" H 9500 5900 50  0001 C CNN
-F 1 "GND" H 9505 5977 50  0000 C CNN
-F 2 "" H 9500 6150 50  0001 C CNN
-F 3 "" H 9500 6150 50  0001 C CNN
-	1    9500 6150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:PWR_FLAG #FLG01
-U 1 1 5F93ABBE
-P 9125 6150
-F 0 "#FLG01" H 9125 6225 50  0001 C CNN
-F 1 "PWR_FLAG" H 9125 6323 50  0000 C CNN
-F 2 "" H 9125 6150 50  0001 C CNN
-F 3 "~" H 9125 6150 50  0001 C CNN
-	1    9125 6150
-	-1   0    0    1   
-$EndComp
-Text GLabel 9125 5950 1    50   UnSpc ~ 0
-3.3V
-Wire Wire Line
-	9125 6150 9125 5950
-Wire Wire Line
-	9500 6150 9500 5975
-$Comp
 L Connector_Generic:Conn_01x01 J1
 U 1 1 5F94CBF1
 P 750 1400
 F 0 "J1" H 700 1500 50  0000 L CNN
 F 1 "Conn_01x01" H 400 1150 50  0001 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical" H 750 1400 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 750 1400 50  0001 C CNN
 F 3 "~" H 750 1400 50  0001 C CNN
 	1    750  1400
 	-1   0    0    1   
@@ -561,7 +522,7 @@ U 1 1 5FBC5029
 P 3775 6175
 F 0 "U4" H 3775 7790 50  0000 C CNN
 F 1 "Teensy4.0" H 3775 7699 50  0000 C CNN
-F 2 "teensy:Teensy40" H 3375 6375 50  0001 C CNN
+F 2 "teensy:Teensy40_HAT" H 3375 6375 50  0001 C CNN
 F 3 "" H 3375 6375 50  0001 C CNN
 	1    3775 6175
 	1    0    0    -1  
@@ -770,9 +731,7 @@ Wire Wire Line
 Text GLabel 8375 1300 0    50   Input ~ 0
 LRCK
 Text GLabel 8375 1450 0    50   Input ~ 0
-MLCK
-Wire Wire Line
-	8550 1450 8375 1450
+MCLK
 Wire Wire Line
 	8550 1000 7775 1000
 Wire Wire Line
@@ -859,7 +818,7 @@ U 1 1 5FC08955
 P 9950 2075
 F 0 "J6" V 9950 1900 50  0000 L CNN
 F 1 "Conn_01x01" V 10075 1650 50  0001 L CNN
-F 2 "Connector_Pin:Pin_D1.3mm_L11.0mm_LooseFit" H 9950 2075 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 9950 2075 50  0001 C CNN
 F 3 "~" H 9950 2075 50  0001 C CNN
 	1    9950 2075
 	0    1    1    0   
@@ -1048,7 +1007,7 @@ U 1 1 5FBD39C8
 P 10550 3400
 F 0 "J7" H 10525 3275 50  0000 L CNN
 F 1 "Conn_01x01" V 10675 2975 50  0001 L CNN
-F 2 "Connector_Pin:Pin_D1.3mm_L11.0mm_LooseFit" H 10550 3400 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 10550 3400 50  0001 C CNN
 F 3 "~" H 10550 3400 50  0001 C CNN
 	1    10550 3400
 	1    0    0    -1  
@@ -1206,8 +1165,6 @@ SLAVE MODE
 Text Notes 8000 5275 0    50   ~ 0
 SOT-23-5 Package
 Wire Wire Line
-	4875 7225 5100 7225
-Wire Wire Line
 	5175 5525 4875 5525
 $Comp
 L Connector_Generic:Conn_01x03 J5
@@ -1302,12 +1259,12 @@ Wire Wire Line
 $Comp
 L power:GND #PWR012
 U 1 1 5FD514D9
-P 5100 7225
-F 0 "#PWR012" H 5100 6975 50  0001 C CNN
-F 1 "GND" H 5200 7100 50  0000 C CNN
-F 2 "" H 5100 7225 50  0001 C CNN
-F 3 "" H 5100 7225 50  0001 C CNN
-	1    5100 7225
+P 5200 7225
+F 0 "#PWR012" H 5200 6975 50  0001 C CNN
+F 1 "GND" H 5300 7100 50  0000 C CNN
+F 2 "" H 5200 7225 50  0001 C CNN
+F 3 "" H 5200 7225 50  0001 C CNN
+	1    5200 7225
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1332,10 +1289,6 @@ F 3 "" H 2425 4875 50  0001 C CNN
 	1    2425 4875
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4875 5325 5175 5325
-Text GLabel 5175 5325 2    50   UnSpc ~ 0
-3.3V
 Wire Wire Line
 	2425 4825 2425 4875
 Wire Wire Line
@@ -1363,7 +1316,6 @@ F 3 "" H 6550 7450 50  0001 C CNN
 	1    6550 7450
 	1    0    0    -1  
 $EndComp
-NoConn ~ 4875 7325
 $Comp
 L ‎R20407RR02Q‎_ROT_SWITCH:R20407RR02Q U1
 U 1 1 5FC10267
@@ -1532,7 +1484,7 @@ U 1 1 5FC39509
 P 9925 5325
 F 0 "J11" H 9900 5200 50  0000 L CNN
 F 1 "Conn_01x01" V 10050 4900 50  0001 L CNN
-F 2 "Connector_Pin:Pin_D1.3mm_L11.0mm_LooseFit" H 9925 5325 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 9925 5325 50  0001 C CNN
 F 3 "~" H 9925 5325 50  0001 C CNN
 	1    9925 5325
 	1    0    0    -1  
@@ -1545,7 +1497,7 @@ U 1 1 5FC3CEA5
 P 10500 5050
 F 0 "J12" H 10475 4925 50  0000 L CNN
 F 1 "Conn_01x01" V 10625 4625 50  0001 L CNN
-F 2 "Connector_Pin:Pin_D1.3mm_L11.0mm_LooseFit" H 10500 5050 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 10500 5050 50  0001 C CNN
 F 3 "~" H 10500 5050 50  0001 C CNN
 	1    10500 5050
 	0    -1   -1   0   
@@ -1571,7 +1523,7 @@ U 1 1 5FC4C51C
 P 6275 7125
 F 0 "J9" V 6125 7025 50  0000 L CNN
 F 1 "Conn_01x01" V 6400 6700 50  0001 L CNN
-F 2 "Connector_Pin:Pin_D1.3mm_L11.0mm_LooseFit" H 6275 7125 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 6275 7125 50  0001 C CNN
 F 3 "~" H 6275 7125 50  0001 C CNN
 	1    6275 7125
 	0    -1   -1   0   
@@ -1582,7 +1534,7 @@ U 1 1 5FC5BD03
 P 6550 7125
 F 0 "J10" V 6400 7025 50  0000 L CNN
 F 1 "Conn_01x01" V 6675 6700 50  0001 L CNN
-F 2 "Connector_Pin:Pin_D1.3mm_L11.0mm_LooseFit" H 6550 7125 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 6550 7125 50  0001 C CNN
 F 3 "~" H 6550 7125 50  0001 C CNN
 	1    6550 7125
 	0    -1   -1   0   
@@ -1595,7 +1547,7 @@ U 1 1 5FC74E42
 P 6000 7125
 F 0 "J8" V 6000 6975 50  0000 L CNN
 F 1 "Conn_01x01" V 6125 6700 50  0001 L CNN
-F 2 "Connector_Pin:Pin_D1.3mm_L11.0mm_LooseFit" H 6000 7125 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 6000 7125 50  0001 C CNN
 F 3 "~" H 6000 7125 50  0001 C CNN
 	1    6000 7125
 	0    1    1    0   
@@ -1681,4 +1633,40 @@ F 3 "https://www.diodes.com/assets/Datasheets/AP2204.pdf" H 2275 3850 50  0001 C
 	1    2275 3850
 	1    0    0    -1  
 $EndComp
+Text Label 1775 3850 0    50   ~ 0
++9V
+Text GLabel 4925 7325 2    50   UnSpc ~ 0
+3.3V
+Wire Wire Line
+	4875 7225 5200 7225
+Wire Wire Line
+	4875 7325 4925 7325
+Text GLabel 2525 6325 0    50   UnSpc ~ 0
+3.3V
+Wire Wire Line
+	2675 6325 2525 6325
+Wire Wire Line
+	8550 1450 8375 1450
+NoConn ~ 2675 5125
+Text Label 9025 5875 0    50   ~ 0
++9V
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5FD138D1
+P 9025 6100
+F 0 "#FLG0101" H 9025 6175 50  0001 C CNN
+F 1 "PWR_FLAG" H 9025 6273 50  0000 C CNN
+F 2 "" H 9025 6100 50  0001 C CNN
+F 3 "~" H 9025 6100 50  0001 C CNN
+	1    9025 6100
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9025 6100 9025 5875
+Text GLabel 10675 2850 1    50   Input ~ 0
+3.3V
+Wire Wire Line
+	10675 2950 10675 2850
+Connection ~ 10675 2950
+NoConn ~ 4875 5325
 $EndSCHEMATC
