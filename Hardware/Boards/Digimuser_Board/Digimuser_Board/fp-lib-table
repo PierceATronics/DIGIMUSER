@@ -4,4 +4,5 @@
   (lib (name teensy)(type KiCad)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/teensy.pretty-master/teensy.pretty-master)(options "")(descr ""))
   (lib (name MCP6271TE0T)(type KiCad)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/ul_MCP6271TEOT/KiCAD/MCP6271TEOT/footprints.pretty)(options "")(descr ""))
   (lib (name MCP6272-E_SN)(type KiCad)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/MCP6272-E_SN)(options "")(descr ""))
+  (lib (name Custom_Connectors)(type KiCad)(uri C:/Users/pierc/Projects/DIGIMUSER/Hardware/Project_Library/Custom_Connectors.pretty)(options "")(descr ""))
 )

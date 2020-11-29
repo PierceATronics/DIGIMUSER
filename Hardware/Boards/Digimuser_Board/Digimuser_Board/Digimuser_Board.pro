@@ -1,4 +1,4 @@
-update=11/28/2020 3:32:15 PM
+update=11/29/2020 2:29:05 PM
 version=1
 last_client=kicad
 [general]
@@ -259,7 +259,7 @@ dPairGap=0.25
 dPairViaGap=0.25
 [pcbnew/Netclasses/2]
 Name=JLCPWR
-Clearance=0.3
+Clearance=0.2
 TrackWidth=0.4
 ViaDiameter=1
 ViaDrill=0.5
