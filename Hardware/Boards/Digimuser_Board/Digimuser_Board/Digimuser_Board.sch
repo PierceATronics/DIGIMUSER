@@ -969,7 +969,6 @@ NoConn ~ 2675 6225
 NoConn ~ 2675 6525
 NoConn ~ 2675 6625
 NoConn ~ 2675 7225
-NoConn ~ 2675 7325
 NoConn ~ 4875 4825
 NoConn ~ 4875 4925
 NoConn ~ 4875 5025
@@ -1064,18 +1063,18 @@ Wire Wire Line
 Wire Wire Line
 	4875 7525 5200 7525
 Wire Wire Line
-	6000 6925 6000 6775
+	6000 6925 6000 6825
 Text GLabel 6000 6775 1    50   UnSpc ~ 0
 3.3V
 $Comp
 L power:GND #PWR015
 U 1 1 5FBEF172
-P 6550 7450
-F 0 "#PWR015" H 6550 7200 50  0001 C CNN
-F 1 "GND" H 6555 7277 50  0000 C CNN
-F 2 "" H 6550 7450 50  0001 C CNN
-F 3 "" H 6550 7450 50  0001 C CNN
-	1    6550 7450
+P 6575 6800
+F 0 "#PWR015" H 6575 6550 50  0001 C CNN
+F 1 "GND" H 6580 6627 50  0000 C CNN
+F 2 "" H 6575 6800 50  0001 C CNN
+F 3 "" H 6575 6800 50  0001 C CNN
+	1    6575 6800
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1293,16 +1292,16 @@ $EndComp
 $Comp
 L Connector_Generic:Conn_01x01 J10
 U 1 1 5FC5BD03
-P 6550 7125
-F 0 "J10" V 6400 7025 50  0000 L CNN
-F 1 "Conn_01x01" V 6675 6700 50  0001 L CNN
-F 2 "Custom_Connectors:PinHeader_2.54mm_1x01_P2.54mm" H 6550 7125 50  0001 C CNN
-F 3 "~" H 6550 7125 50  0001 C CNN
-	1    6550 7125
+P 6575 6475
+F 0 "J10" V 6425 6375 50  0000 L CNN
+F 1 "Conn_01x01" V 6700 6050 50  0001 L CNN
+F 2 "Custom_Connectors:PinHeader_2.54mm_1x01_P2.54mm" H 6575 6475 50  0001 C CNN
+F 3 "~" H 6575 6475 50  0001 C CNN
+	1    6575 6475
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	6550 7450 6550 7325
+	6575 6800 6575 6750
 $Comp
 L Connector_Generic:Conn_01x01 J8
 U 1 1 5FC74E42
@@ -1314,8 +1313,8 @@ F 3 "~" H 6000 7125 50  0001 C CNN
 	1    6000 7125
 	0    1    1    0   
 $EndComp
-Text Notes 6100 7025 0    50   ~ 0
-SLIDER_POT
+Text Notes 6200 7050 0    50   ~ 0
+POT1
 $Comp
 L Connector:Barrel_Jack_MountingPin J3
 U 1 1 5FC5DD80
@@ -1448,17 +1447,6 @@ F 1 "FILTOUT" H 5025 2025 50  0000 L CNN
 F 2 "TestPoint:TestPoint_Keystone_5019_Minature" H 5375 1725 50  0001 C CNN
 F 3 "~" H 5375 1725 50  0001 C CNN
 	1    5175 1725
-	1    0    0    -1  
-$EndComp
-$Comp
-L teensy:Teensy4.0 U4
-U 1 1 5FBC5029
-P 3775 6175
-F 0 "U4" H 3775 7790 50  0000 C CNN
-F 1 "Teensy4.0" H 3775 7699 50  0000 C CNN
-F 2 "teensy:Teensy40_HAT" H 3375 6375 50  0001 C CNN
-F 3 "" H 3375 6375 50  0001 C CNN
-	1    3775 6175
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1743,4 +1731,72 @@ Connection ~ 3625 2250
 Wire Wire Line
 	9500 4725 10500 4725
 Connection ~ 9500 3625
+$Comp
+L Connector_Generic:Conn_01x01 J15
+U 1 1 5FC8AFE7
+P 6775 7125
+F 0 "J15" V 6625 7025 50  0000 L CNN
+F 1 "Conn_01x01" V 6900 6700 50  0001 L CNN
+F 2 "Custom_Connectors:PinHeader_2.54mm_1x01_P2.54mm" H 6775 7125 50  0001 C CNN
+F 3 "~" H 6775 7125 50  0001 C CNN
+	1    6775 7125
+	0    -1   -1   0   
+$EndComp
+$Comp
+L teensy:Teensy4.0 U4
+U 1 1 5FBC5029
+P 3775 6175
+F 0 "U4" H 3775 7790 50  0000 C CNN
+F 1 "Teensy4.0" H 3775 7699 50  0000 C CNN
+F 2 "teensy:Teensy40_HAT" H 3375 6375 50  0001 C CNN
+F 3 "" H 3375 6375 50  0001 C CNN
+	1    3775 6175
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2550 7325 2550 7725
+Wire Wire Line
+	2550 7725 6775 7725
+Wire Wire Line
+	6775 7725 6775 7325
+Wire Wire Line
+	2550 7325 2675 7325
+Text Notes 6700 7050 0    50   ~ 0
+POT2
+$Comp
+L Connector_Generic:Conn_01x01 J13
+U 1 1 5FC9BEE5
+P 5725 7125
+F 0 "J13" V 5725 6975 50  0000 L CNN
+F 1 "Conn_01x01" V 5850 6700 50  0001 L CNN
+F 2 "Custom_Connectors:PinHeader_2.54mm_1x01_P2.54mm" H 5725 7125 50  0001 C CNN
+F 3 "~" H 5725 7125 50  0001 C CNN
+	1    5725 7125
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6000 6825 5725 6825
+Wire Wire Line
+	5725 6825 5725 6925
+Connection ~ 6000 6825
+Wire Wire Line
+	6000 6825 6000 6775
+$Comp
+L Connector_Generic:Conn_01x01 J14
+U 1 1 5FCB954D
+P 6350 6475
+F 0 "J14" V 6200 6375 50  0000 L CNN
+F 1 "Conn_01x01" V 6475 6050 50  0001 L CNN
+F 2 "Custom_Connectors:PinHeader_2.54mm_1x01_P2.54mm" H 6350 6475 50  0001 C CNN
+F 3 "~" H 6350 6475 50  0001 C CNN
+	1    6350 6475
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6575 6750 6350 6750
+Wire Wire Line
+	6350 6750 6350 6675
+Connection ~ 6575 6750
+Wire Wire Line
+	6575 6750 6575 6675
 $EndSCHEMATC
