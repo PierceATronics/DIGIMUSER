@@ -6,7 +6,7 @@ encoding utf-8
 Sheet 1 1
 Title "Digimuser Board"
 Date "2020-11-12"
-Rev "A"
+Rev "A1"
 Comp "Author: David Pierce Walker-Howell"
 Comment1 ""
 Comment2 ""
@@ -1103,7 +1103,7 @@ $Comp
 L Device:R_US R4
 U 1 1 5FCB0650
 P 1425 7375
-F 0 "R4" H 1493 7421 50  0000 L CNN
+F 0 "R4" H 1475 7425 50  0000 L CNN
 F 1 "10K" H 1450 7350 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric" V 1465 7365 50  0001 C CNN
 F 3 "~" H 1425 7375 50  0001 C CNN
@@ -1389,7 +1389,7 @@ U 1 1 5FCD2989
 P 2275 3850
 F 0 "U2" H 2275 4092 50  0000 C CNN
 F 1 "UA78M05IDCYR" H 2275 4001 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-223" H 2275 4075 50  0001 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 2275 4075 50  0001 C CNN
 F 3 "https://www.diodes.com/assets/Datasheets/AP2204.pdf" H 2275 3850 50  0001 C CNN
 	1    2275 3850
 	1    0    0    -1  
