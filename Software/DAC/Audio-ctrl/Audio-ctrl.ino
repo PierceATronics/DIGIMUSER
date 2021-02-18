@@ -47,28 +47,36 @@
 //	23-MCLK1	|	23-MCLK1
 //	21-BCLK1	|	21-BCLK1(SCLK)
 //	20-LRCLK	|	20-LRCLK
-//	 8-SDIN		|	 9-SDOUT
+//	 8-SDIN		|	 9-SDOUT* Use of pins 8 & 9 are working as of 2/16    
 //		GND		|		GND
 //		VCC		|		VCC(3.3V)
 
 //////Includes go here//////
-//#include <i2s_output.h>//dummy
+
 //#include "Viola_samples.h"
 #include "AudioStream.h" //contains AudioStream and AudioConnection classes
 #include <Audio.h>
+//#include "I2S.h"
+#include "DIGILib.h"
 
 ////////////////////////////
 
-
+//Create the library objects 
 AudioSynthWaveformSine   sine2;//
 AudioSynthWaveformSine   sine1;//
-AudioOutputI2S           i2s1;//
-AudioConnection          patchCord1(sine2, 0, i2s1, 0);//(AudioStream &source, unsigned char sourceOutput,AudioStream &destination, unsigned char destinationInput
-AudioConnection          patchCord2(sine1, 0, i2s1, 1);//
+AudioSynthWaveform       waveform1;      //xy=188,240
+//InI2S           input;   
+OutI2S           output;//output
+//AudioOutputI2S           i2s1;//
+//AudioConnection          C1(sine2, 0, output, 0);//(AudioStream &source, unsigned char sourceOutput,AudioStream &destination, unsigned char destinationInput
+//AudioConnection          C2(sine1, 0, output, 1);//
 
+AudioConnection          C1(waveform1, 0, output, 0);
+AudioConnection          C2(waveform1, 0, output, 1);//
 
-AudioSynthToneSweep tones;
 //sine wave audio tone generatrion here
+AudioSynthToneSweep tones;//used for testing purposes
+
 
 int phase = 0;//
 void setup(void)
@@ -91,14 +99,17 @@ void setup(void)
 	
 	 // put your setup code here, to run once:
   AudioMemory(12);
-  while (!Serial);
- 
-  AudioNoInterrupts();
-  sine1.frequency(550);
-  sine2.frequency(440);
-  sine1.amplitude(1.0);
-  sine2.amplitude(1.0);
-  AudioInterrupts();
+  //while (!Serial);
+  waveform1.pulseWidth(0.5);
+  waveform1.begin(0.4, 220, WAVEFORM_PULSE);
+
+  
+  //AudioNoInterrupts();
+  //sine1.frequency(550);
+  //sine2.frequency(550);
+ /// sine1.amplitude(1.0);
+ // sine2.amplitude(1.0);
+  //AudioInterrupts();
 }
 
 
