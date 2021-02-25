@@ -65,7 +65,7 @@
 AudioSynthWaveformSine   sine2;//
 AudioSynthWaveformSine   sine1;//
 AudioSynthWaveform       waveform1;      //xy=188,240
-//InI2S           input;   
+InI2S           input;   
 OutI2S           output;//output
 //AudioOutputI2S           i2s1;//
 //AudioConnection          C1(sine2, 0, output, 0);//(AudioStream &source, unsigned char sourceOutput,AudioStream &destination, unsigned char destinationInput

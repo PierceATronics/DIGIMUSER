@@ -4,7 +4,7 @@
 #ifndef i2s_h_
 #define i2s_h_
 
-#include "Arduino.h"
+#include "Arduino.h"//use<>
 #include "AudioStream.h"
 #include "DMAChannel.h"
 
@@ -32,6 +32,30 @@ private:
 	static uint16_t block_right_offset;
 	audio_block_t *inputQueueArray[2];
 };
-#endif
+//#endif
 ////////////////////////////////////////////////
 /////Input I2S goes here
+
+class InI2S : public AudioStream
+{
+public:
+	AudioInputI2S(void) : AudioStream(0, NULL) { begin(); }
+		virtual void update(void);
+		void begin(void);
+protected:	
+	AudioInputI2S(int dummy): AudioStream(0, NULL) {} // to be used only inside AudioInputI2Sslave !!
+	static bool update_responsibility;
+		
+		
+	static DMAChannel dma;//
+	static void isr(void);//	
+		
+private:
+	static audio_block_t *block_left;
+	static audio_block_t *block_right;
+//#if !defined(KINETISL)	
+	static uint16_t block_offset;
+//#endif	
+};
+
+#endif

@@ -27,24 +27,30 @@
 #include "I2S.h"
 //#include "tremulo.h"
 //#include "flanger.h"
-//#include "distortion.h"
+#include "dist.h"
 
 
 
 
-
-#endif
 
 //Class to define pins
 class DIGIMUSER 
 { 
 public: 
-	dSetup(void){};
-	//i2s, for adc, potentiometer, rotary switch
-}
-
+	//DIGIMUSER();
+	void dSetup(void);//{
+	//i2s, for adc, potentiometer, rotary switch	
+	//list 
+	int potentiometer1;//for gain
+	int potentiometer2;//tentative
+	int RotSwitch;
+	
+	void doSomething();
+	
+};
+#endif//DIGILIB_H_
 /*
 class Effect_trem constructor method will be in rtheir respective headers
-
+dSetup();
 
 */
