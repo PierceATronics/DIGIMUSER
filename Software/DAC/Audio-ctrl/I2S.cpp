@@ -11,17 +11,29 @@
 #include "I2S.h"
 #include "memcpy_audio.h"
 #include "imxrt_hw.h"//processor for teensy 4.0
+//#include "DIGILib.h"
+bool debugg = false;
 
+audio_block_t * InI2S::block_left = NULL;
+audio_block_t * InI2S::block_right = NULL;
 
 audio_block_t * OutI2S::block_left_1st = NULL;
 audio_block_t * OutI2S::block_right_1st = NULL;
 audio_block_t * OutI2S::block_left_2nd = NULL;
 audio_block_t * OutI2S::block_right_2nd = NULL;
+
+uint16_t InI2S::block_offset = 0;
+
 uint16_t  OutI2S::block_left_offset = 0;
 uint16_t  OutI2S::block_right_offset = 0;
+
+bool InI2S::update_responsibility = false;
 bool OutI2S::update_responsibility = false;
+
+DMAChannel InI2S::dma(false);
 DMAChannel OutI2S::dma(false);
 DMAMEM __attribute__((aligned(32))) static uint32_t i2s_tx_buffer[AUDIO_BLOCK_SAMPLES];
+DMAMEM __attribute__((aligned(32))) static uint32_t i2s_rx_buffer[AUDIO_BLOCK_SAMPLES];
 
 
 //output
@@ -182,7 +194,7 @@ void OutI2S::config_i2s(void)
 {
 	//this fcn sets up the clock and audio sample rates
 		//can use the actual sample frequency Fs
-	Serial.println("Configuring I2S");
+	if(debugg) Serial.println("Configuring I2S");
 
 	
 	CCM_CCGR5 |= CCM_CCGR5_SAI1(CCM_CCGR_ON);
@@ -221,7 +233,7 @@ void OutI2S::config_i2s(void)
 	CORE_PIN21_CONFIG = 3;  //1:RX_BCLK
 	CORE_PIN20_CONFIG = 3;  //1:RX_SYNC//LRCLK
 
-	Serial.println("pins configured");
+	if(debugg) Serial.println("pins configured");
 
 	int rsync = 0;
 	int tsync = 1;
@@ -237,7 +249,7 @@ void OutI2S::config_i2s(void)
 		    | I2S_TCR4_FSD | I2S_TCR4_FSE | I2S_TCR4_FSP;
 	I2S1_TCR5 = I2S_TCR5_WNW((32-1)) | I2S_TCR5_W0W((32-1)) | I2S_TCR5_FBT((32-1));//for 24 bit, change 15 to 
 
-	Serial.println("transmitter configured");
+	if(debugg) Serial.println("transmitter configured");
 	//configure receiver
 	I2S1_RMR = 0;
 	//I2S1_RCSR = (1<<25); //Reset
@@ -249,14 +261,138 @@ void OutI2S::config_i2s(void)
 		    | I2S_RCR4_FSE | I2S_RCR4_FSP | I2S_RCR4_FSD;
 	I2S1_RCR5 = I2S_RCR5_WNW((32-1)) | I2S_RCR5_W0W((32-1)) | I2S_RCR5_FBT((32-1));
 	
-	Serial.println("receiver configured.");
-	Serial.println("I2S Configuration Complete");
+	if(debugg) Serial.println("receiver configured.");
+	if(debugg) Serial.println("I2S Configuration Complete");
 
 
+}
+
+	
+/////////////////////////////////////
+//Input
+void InI2S::begin(void)
+{
+	dma.begin(true); // Allocate the DMA channel first
+	
+	OutI2S::config_i2s();
+	
+	CORE_PIN8_CONFIG  = 3;  //1:RX_DATA0
+	IOMUXC_SAI1_RX_DATA0_SELECT_INPUT = 2;
+
+	dma.TCD->SADDR = (void *)((uint32_t)&I2S1_RDR0 + 2);
+	dma.TCD->SOFF = 0;
+	dma.TCD->ATTR = DMA_TCD_ATTR_SSIZE(1) | DMA_TCD_ATTR_DSIZE(1);
+	dma.TCD->NBYTES_MLNO = 2;
+	dma.TCD->SLAST = 0;
+	dma.TCD->DADDR = i2s_rx_buffer;
+	dma.TCD->DOFF = 2;
+	dma.TCD->CITER_ELINKNO = sizeof(i2s_rx_buffer) / 2;
+	dma.TCD->DLASTSGA = -sizeof(i2s_rx_buffer);
+	dma.TCD->BITER_ELINKNO = sizeof(i2s_rx_buffer) / 2;
+	dma.TCD->CSR = DMA_TCD_CSR_INTHALF | DMA_TCD_CSR_INTMAJOR;
+	dma.triggerAtHardwareEvent(DMAMUX_SOURCE_SAI1_RX);
+
+	I2S1_RCSR = I2S_RCSR_RE | I2S_RCSR_BCE | I2S_RCSR_FRDE | I2S_RCSR_FR;
+//#endif
+	update_responsibility = update_setup();
+	dma.enable();
+	dma.attachInterrupt(isr);
+}
+
+
+void InI2S::isr(void)
+{
+	uint32_t daddr, offset;
+	const int16_t *src, *end;
+	int16_t *dest_left, *dest_right;
+	audio_block_t *left, *right;
+	
+	daddr = (uint32_t)(dma.TCD->DADDR);
+	dma.clearInterrupt();
+	
+	if (daddr < (uint32_t)i2s_rx_buffer + sizeof(i2s_rx_buffer) / 2) {
+		// DMA is receiving to the first half of the buffer
+		// need to remove data from the second half
+		src = (int16_t *)&i2s_rx_buffer[AUDIO_BLOCK_SAMPLES/2];
+		end = (int16_t *)&i2s_rx_buffer[AUDIO_BLOCK_SAMPLES];
+		if (InI2S::update_responsibility) AudioStream::update_all();
+	} else {
+		// DMA is receiving to the second half of the buffer
+		// need to remove data from the first half
+		src = (int16_t *)&i2s_rx_buffer[0];
+		end = (int16_t *)&i2s_rx_buffer[AUDIO_BLOCK_SAMPLES/2];
+	}
+	left = InI2S::block_left;
+	right = InI2S::block_right;
+	if (left != NULL && right != NULL) {
+		offset = InI2S::block_offset;
+		if (offset <= AUDIO_BLOCK_SAMPLES/2) {
+			dest_left = &(left->data[offset]);
+			dest_right = &(right->data[offset]);
+			InI2S::block_offset = offset + AUDIO_BLOCK_SAMPLES/2;
+			arm_dcache_delete((void*)src, sizeof(i2s_rx_buffer) / 2);
+			do {
+				*dest_left++ = *src++;
+				*dest_right++ = *src++;
+			} while (src < end);
+		}
+	}
+
+}
+	
+	
+void InI2S::update(void)
+{
+	audio_block_t *new_left=NULL, *new_right=NULL, *out_left=NULL, *out_right=NULL;
+
+	// allocate 2 new blocks, but if one fails, allocate neither
+	new_left = allocate();
+	if (new_left != NULL) {
+		new_right = allocate();
+		if (new_right == NULL) {
+			release(new_left);
+			new_left = NULL;
+		}
+	}
+	__disable_irq();
+	if (block_offset >= AUDIO_BLOCK_SAMPLES) {
+		// the DMA filled 2 blocks, so grab them and get the
+		// 2 new blocks to the DMA, as quickly as possible
+		out_left = block_left;
+		block_left = new_left;
+		out_right = block_right;
+		block_right = new_right;
+		block_offset = 0;
+		__enable_irq();
+		// then transmit the DMA's former blocks
+		transmit(out_left, 0);
+		release(out_left);
+		transmit(out_right, 1);
+		release(out_right);
+		//if(debugg) Serial.print(".");
+	} else if (new_left != NULL) {
+		// the DMA didn't fill blocks, but we allocated blocks
+		if (block_left == NULL) {
+			// the DMA doesn't have any blocks to fill, so
+			// give it the ones we just allocated
+			block_left = new_left;
+			block_right = new_right;
+			block_offset = 0;
+			__enable_irq();
+		} else {
+			// the DMA already has blocks, doesn't need these
+			__enable_irq();
+			release(new_left);
+			release(new_right);
+		}
+	} else {
+		// The DMA didn't fill blocks, and we could not allocate
+		// memory... the system is likely starving for memory!
+		// Sadly, there's nothing we can do.
+		__enable_irq();
+	}
 }
 	
 	
 	
 	
-/////////////////////////////////////
-//Input

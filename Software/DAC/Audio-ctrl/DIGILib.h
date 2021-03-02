@@ -17,7 +17,6 @@
 
 #include "DMAChannel.h"
 
-
 //Using a potentiometer:
 //in order to use a pot for some efect such as gain,
 //AudioNoInterrupts() must be used, make changes to the objects, 
@@ -27,7 +26,7 @@
 #include "I2S.h"
 //#include "tremulo.h"
 //#include "flanger.h"
-#include "dist.h"
+//#include "dist.h"
 
 
 
@@ -45,7 +44,7 @@ public:
 	int potentiometer2;//tentative
 	int RotSwitch;
 	
-	void doSomething();
+	int getGain();
 	
 };
 #endif//DIGILIB_H_
