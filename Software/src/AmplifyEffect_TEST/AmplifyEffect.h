@@ -15,13 +15,13 @@ class AmplifyEffect : public AudioStream{
         //Default constructor
         AmplifyEffect(void) :  AudioStream(1, inputQueueArray) {}
 
-        boolean begin(short _amplification);
+        boolean begin(int16_t _amplification);
 
         virtual void update(void);
 
     private:
 
-        uint32_t *amplification;
+        int16_t amplification;
         audio_block_t *inputQueueArray[1];
 
 };
