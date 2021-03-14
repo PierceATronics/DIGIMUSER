@@ -15,13 +15,23 @@ class AmplifyEffect : public AudioStream{
         //Default constructor
         AmplifyEffect(void) :  AudioStream(1, inputQueueArray) {}
 
-        boolean begin(int16_t _amplification);
+        //Call to set the initial amplification
+        boolean begin(float _amplification);
 
         virtual void update(void);
 
+        //Set the amplification dynamically
+        boolean set_amplification(float _amplification);
+
+        //convert an int16 (2's comp) to float, the output float is in range [-1.0, 1.0];
+        float int16_to_float_normalized(int16_t a);
+
+        //convert a float to int16 (2's comp).
+        int16_t float_to_int16(float a);  
+
     private:
 
-        int16_t amplification;
+        float amplification;
         audio_block_t *inputQueueArray[1];
 
 };

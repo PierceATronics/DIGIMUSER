@@ -1,0 +1,2 @@
+Electrical:
+	- The ADC/DAC saturates when a 160mVpp is applied.
