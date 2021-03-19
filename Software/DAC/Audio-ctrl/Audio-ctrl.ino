@@ -56,7 +56,7 @@
 //////Includes go here//////////
 
 #include "AudioStream.h" //contains AudioStream and AudioConnection classes
-#include <Audio.h>
+//#include <Audio.h>
 #include "DIGILib.h"
 
 //////////Testing Objects////////////
@@ -78,6 +78,7 @@ AudioEffectFlange          effect3;
 //FlangerEffect            effect2;
 //DistortionEffect         effect3;
 AudioMixer4                mainMixer;
+Tremolo_Effect						T_effect;
 
 //Enable for DAC testing
 //AudioConnection          C1(sine2, 0, output, 0);//(AudioStream &source, unsigned char sourceOutput,AudioStream &destination, unsigned char destinationInput
@@ -90,18 +91,21 @@ AudioMixer4                mainMixer;
 
 
 //For effects passthrough
-AudioConnection            patchCord1(input, 0, effect1, 0);
-AudioConnection            patchCord2(input, 0, effect2, 0);
-AudioConnection            patchCord3(input, 0, effect3, 0);
+AudioConnection            c1(input, 0, T_effect, 0);
+AudioConnection            c2(input, 0, effect2, 0);
+AudioConnection            c3(input, 0, effect3, 0);
 
-AudioConnection            patchCord4(effect1, 0, mainMixer, 2);
-AudioConnection            patchCord5(effect2, 0, mainMixer, 1);
-AudioConnection            patchCord6(effect3, 0, mainMixer, 0);
+AudioConnection            c4(effect1, 0, mainMixer, 2);
+AudioConnection            c5(effect2, 0, mainMixer, 1);
+AudioConnection            c6(effect3, 0, mainMixer, 0);
 
-AudioConnection            patchCord7(mainMixer, 0, output, 0);
-AudioConnection            patchCord8(mainMixer, 0, output, 1);
+AudioConnection            c7(mainMixer, 0, output, 0);
+AudioConnection            c8(mainMixer, 0, output, 1);
+AudioConnection            c9(T_effect, 0, output, 1);
 
 DIGIMUSER mux;
+
+
 
 short l_delayline[12];
 int phase = 0;//
@@ -143,6 +147,8 @@ void setup(void)
   //effect3.begin(l_delayline,12,3,3,0.5);
 //effect2.begin(l_delayline,12,3,3,0.5);
 
+
+//T_effect.begin();
 }
 
 
@@ -155,8 +161,8 @@ void loop(void)
   AudioInterrupts();
   delay(250);
   */
-  
-  int gain = mux.getGain();
+  //can change to flaot
+  float gain = mux.getGain();
   //Serial.print("Gain is ");
   //Serial.println(gain);
   //delay(1000);
@@ -164,6 +170,18 @@ void loop(void)
   //mainMixer.gain(1,0);
   //mainMixer.gain(2,0);
   //mainMixer.gain(3,0);
+  ///////////////////////
+  
+  //0-1023
+  analogReadResolution(10);
+  Serial.print("10 bit value: ");
+  Serial.print(gain);
+  delay(200);
+  
+  
+  /////////////////////
+  
+  
   if(gain > 512)
   {
     effect1.voices(3,3,0.5);

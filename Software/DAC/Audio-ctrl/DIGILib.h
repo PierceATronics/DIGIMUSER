@@ -11,11 +11,13 @@
 *
 */
 
-
 #ifndef DIGILib_h_
 #define DIGILib_h_
 
+#include <Arduino.h>
 #include "DMAChannel.h"
+#include <Audio.h>
+
 
 //Using a potentiometer:
 //in order to use a pot for some efect such as gain,
@@ -24,13 +26,9 @@
 
 
 #include "I2S.h"
-//#include "tremulo.h"
+#include "Tremolo.h"
 //#include "flanger.h"
 //#include "dist.h"
-
-
-
-
 
 //Class to define pins
 class DIGIMUSER 
@@ -43,8 +41,17 @@ public:
 	int potentiometer1;//for gain
 	int potentiometer2;//tentative
 	int RotSwitch;
+
+    void adc_setup();
 	
 	int getGain();
+	
+	//call when string is grabbed from the ADC for effect
+	float toFP();//pre-processing
+	
+	int toInt();//post processing
+	
+	//int chSelect(); //select which input 
 	
 };
 #endif//DIGILIB_H_

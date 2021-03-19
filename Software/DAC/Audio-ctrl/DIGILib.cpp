@@ -6,7 +6,8 @@
 //}
 
 //for gain A1
-int pot1 = 15;
+int pot1 = 22;//A8
+int pot2 = 19;//A5
 int gainNum = 0;
 
 void DIGIMUSER :: dSetup(void)
@@ -21,6 +22,7 @@ void DIGIMUSER :: dSetup(void)
   //pin setup
   //int LED = ;
   pinMode(pot1, INPUT);
+  pinMode(pot2, INPUT);
   //setup
   //digitalWrite(,LOW);
 
@@ -31,3 +33,29 @@ int DIGIMUSER::getGain() {
   return analogRead(pot1);
 
 }//mixer1.gain
+
+
+/*
+void adc_setup(){
+	//DIDR0
+	//DIDR2
+	
+	//print errors
+	
+	
+	
+	// Print errors, if any.
+    if(adc->adc0->fail_flag != ADC_ERROR::CLEAR) {
+      Serial.print("ADC0: "); Serial.println(getStringADCError(adc->adc0->fail_flag));
+    }
+	adc->resetError();
+	
+}
+*/
+
+
+
+
+
+
+
