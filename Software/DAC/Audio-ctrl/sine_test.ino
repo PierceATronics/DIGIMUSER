@@ -1,3 +1,5 @@
+//Audio-ctrl_sine_test.ino
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company: DIGIMUSER(Team 15)
 // Engineer: Angel Martinez
@@ -52,58 +54,33 @@
 //   8-SDIN   |  9-SDOUT* Use of pins 8 & 9 are working as of 2/16
 //    GND   |   GND
 //    VCC   |   VCC(3.3V)
-//
-//  may not be necessary with DAC, it has own startup Power-Up sequence
-//  when MCLK is applied. Ramp-up(~250/420ms)is then initiated until complete.
-//  when LRCK, SDIN and SCLK recieve valid signls, 2000 sample periods must pass
-//  untill audio can begin to output.
-//  These properties must be checked with th ADC as well.//
-//
+
 //////Includes go here//////////
 
 #include "AudioStream.h" //contains AudioStream and AudioConnection classes
 //#include <Audio.h>
 #include "DIGILib.h"
 
+//////////Testing Objects////////////
+// Create the library objects
+ AudioSynthWaveformSine   sine2;//
+ AudioSynthWaveformSine   sine1;//
 
-///////  ADC/DAC objects  ////////
+// sine wave audio tone generatrion here
+// AudioSynthToneSweep tones;
+/////////////////////////////////////
+
 InI2S                      input;
 OutI2S                     output;
 
-////////Audio Effect objects////////
-AudioEffectFlange          effect1;
-AudioEffectFlange          effect2;
-AudioEffectFlange          effect3;
-
-AudioMixer4                mainMixer;
-Tremolo_Effect						T_effect;
-//Flanger_Effect            F_effect;
-//Distortion_Effect         D_effect2;
-
-/////////  Audio Streaming  objects  /////////
+//Enable for DAC testing
+AudioConnection          C1(sine2, 0, output, 0);//(AudioStream &source, unsigned char sourceOutput,AudioStream &destination, unsigned char destinationInput
+AudioConnection          C2(sine1, 0, output, 1);//
 
 //Enable For main passtroguh
 //AudioConnection          C1(input, 0, output, 0);
 //AudioConnection          C2(input, 1, output, 1);//
 
-AudioConnection            c1(input, 0, T_effect, 0);//Tremulo
-//AudioConnection            c1(input, 0, F_effect, 0);//flanger
-//AudioConnection            c2(input, 0, D_effect2, 0);//Distortion
-
-//AudioConnection            c4(effect1, 0, mainMixer, 2);
-//AudioConnection            c5(effect2, 0, mainMixer, 1);
-//AudioConnection            c6(effect3, 0, mainMixer, 0);
-
-//AudioConnection            c7(mainMixer, 0, output, 0);
-
-AudioConnection            c9(T_effect, 0, output, 0);
-
-DIGIMUSER mux;
-
-
-//defines for the flanger effect
-short l_delayline[12];
-int phase = 0;//
 
 void setup(void)
 {
@@ -112,70 +89,38 @@ void setup(void)
   while(!Serial);//busy while until serial.available is true
   delay(3000);
 
+  //may not be necessary with DAC, it has own startup Power-Up sequence
+  //when MCLK is applied. Ramp-up(~250/420ms)is then initiated until complete.
+  //when LRCK, SDIN and SCLK recieve valid signls, 2000 sample periods must pass
+  //untill audio can begin to output.
+  //These properties must be checked with th ADC as well.
+
    // put your setup code here, to run once:
 
-//library
    mux.dSetup();
 
   AudioMemory(24);//must change according to the memory amt necessary, one block
 
-  //AudioNoInterrupts();
-
-  //AudioInterrupts();
-
-//begin fcn for flange
-  //effect1.begin(l_delayline,12,3,3,0.5);
-  //effect3.begin(l_delayline,12,3,3,0.5);
-//effect2.begin(l_delayline,12,3,3,0.5);
 
 
-T_effect.begin();//tremulo
+  AudioNoInterrupts();
+  sine1.frequency(550);
+  sine2.frequency(550);
+  sine1.amplitude(1.0);
+  sine2.amplitude(1.0);
+  AudioInterrupts();
+
 }
 
 
 void loop(void)
 {
-
-  //can change to flaot
-  float gain = mux.getGain();
-  //Serial.print("Gain is ");
-  //Serial.println(gain);
-  //delay(1000);
-  //mainMixer.gain(0,0);
-  //mainMixer.gain(1,0);
-  //mainMixer.gain(2,0);
-  //mainMixer.gain(3,0);
-  ///////////////////////
-
-  //0-1023
-  analogReadResolution(10);
-  Serial.print("10 bit value: ");
-  Serial.print(gain);
-  delay(200);
-
-
-   float pot1_val = float( gain / 1023.0);
-
-  T_effect.setGain(pot1_val);
-
-
-  //map()
-
-
-  /////////////////////
-
-
-  if(gain > 512)
-  {
-    effect1.voices(3,3,0.5);
-    mainMixer.gain(2,1);
-  }
-  else
-  {
-    mainMixer.gain(2,0);
-  }
-
-  //Serial.println(gainf);
+  phase+=10;
+  if (phase==360) phase=0;
+  AudioNoInterrupts();
+  sine2.phase(phase);
+  AudioInterrupts();
+  delay(250);
 
 
 }
