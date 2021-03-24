@@ -6,8 +6,8 @@
 //}
 
 //for gain A1
-int pot1 = 19;//A5
-int pot2 = 22;//A8
+int pot1 = 22;//A8
+int pot2 = 19;//A5
 int gainNum = 0;
 
 void DIGIMUSER :: dSetup(void)
@@ -52,3 +52,10 @@ void adc_setup(){
 	
 }
 */
+
+
+
+
+
+
+

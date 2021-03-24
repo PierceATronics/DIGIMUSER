@@ -59,20 +59,4 @@ public:
 class Effect_trem constructor method will be in rtheir respective headers
 dSetup();
 
-use case statement, 
-(case)
-
-trem:
-
-flang:
-
-distt:
-
-effect.begin();
-
-  dist.gain
-
-
-
-
 */

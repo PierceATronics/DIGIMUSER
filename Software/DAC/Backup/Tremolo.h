@@ -26,14 +26,9 @@ public:
 
 
 private:
-	float index = 0;	//time index of the sine wave
+	float index;	//time index of the sine wave
 	float tremo;	//the effect 
 	float y;	//the final value after mixing z with the input
-	//int index = 0;
-	float a = 0;
-	
-	float Fc = 15.0;
-	float Fs = 44100.0;
 	audio_block_t *inputQueueArray[1]; //the array, x = number of inputs your object will support
 
 

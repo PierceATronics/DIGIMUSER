@@ -7,7 +7,7 @@
 
 //#define PI 3.14159265358979323846
 
-//float a = 0.75;//0-1 DEPTH
+int a = 2;
 
 float Tremolo_Effect::begin()//run (float in, float a)
 {
@@ -24,35 +24,21 @@ void Tremolo_Effect::update(void)
 	if (block) {
 		for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++) {
 			//creating the effect
-			
-			if(this->index < (Fs/Fc))//Fs/Fc = 44100/5
-			{
-				this->index +=1;
-			}
-			else{
-				this->index = 0;
-			}
-				
-			// a = intensity, i = index of the sine wave
-			tremo = (1.0 + (a * sinf((2.0 * PI *index * (Fc/Fs))))); // 40.0 = frequency 0-20Hz range
-			//tremo = (1.0 + (a * sinf((2.0 * PI *index)*10 * i))); // 40.0 = frequency 0-20Hz range
-
-			//tremo = (1-a)+a * sin()
+			tremo = (1 + (a * sinhf(40 * PI * i))); // a = intensity, i = index of the sine wave
 			float audio_sample = this->int16_to_float_normalized(block->data[i]);
 			//applying effect to the incoming adc data
-			block->data[i] = this->float_to_int16((tremo )* audio_sample);//.25
+			block->data[i] = this->float_to_int16(tremo * audio_sample);
 		}
 	
 		
 
 	Tremolo_Effect::transmit(block);
-	
 	Tremolo_Effect::release(block);
 	}
 
 }
 boolean Tremolo_Effect::setGain(float _gain){
-	this->a = _gain;
+	//this->a = _gain;
 	return EXIT_SUCCESS;
 }
 

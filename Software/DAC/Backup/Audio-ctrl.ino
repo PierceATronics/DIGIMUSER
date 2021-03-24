@@ -92,18 +92,16 @@ Tremolo_Effect						T_effect;
 
 //For effects passthrough
 AudioConnection            c1(input, 0, T_effect, 0);
-//AudioConnection            c1(input, 0, output, 0);
-//AudioConnection            c2(input, 0, effect2, 0);
-//AudioConnection            c3(input, 0, effect3, 0);
+AudioConnection            c2(input, 0, effect2, 0);
+AudioConnection            c3(input, 0, effect3, 0);
 
-//AudioConnection            c4(effect1, 0, mainMixer, 2);
-//AudioConnection            c5(effect2, 0, mainMixer, 1);
-//AudioConnection            c6(effect3, 0, mainMixer, 0);
+AudioConnection            c4(effect1, 0, mainMixer, 2);
+AudioConnection            c5(effect2, 0, mainMixer, 1);
+AudioConnection            c6(effect3, 0, mainMixer, 0);
 
-//AudioConnection            c7(mainMixer, 0, output, 0);
-//AudioConnection            c8(mainMixer, 0, output, 1);
-
-AudioConnection            c9(T_effect, 0, output, 0);
+AudioConnection            c7(mainMixer, 0, output, 0);
+AudioConnection            c8(mainMixer, 0, output, 1);
+AudioConnection            c9(T_effect, 0, output, 1);
 
 DIGIMUSER mux;
 
@@ -145,12 +143,12 @@ void setup(void)
   //AudioInterrupts();
 
 //begin fcn for flange
-  //effect1.begin(l_delayline,12,3,3,0.5);
+  effect1.begin(l_delayline,12,3,3,0.5);
   //effect3.begin(l_delayline,12,3,3,0.5);
 //effect2.begin(l_delayline,12,3,3,0.5);
 
 
-T_effect.begin();//tremulo
+//T_effect.begin();
 }
 
 
@@ -179,16 +177,6 @@ void loop(void)
   Serial.print("10 bit value: ");
   Serial.print(gain);
   delay(200);
-  
-  
-   float pot1_val = float( gain / 1023.0);
-  
-  T_effect.setGain(pot1_val);
-  
- 
- 
-  
-  //map()
   
   
   /////////////////////
