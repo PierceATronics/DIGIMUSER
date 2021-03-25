@@ -78,7 +78,7 @@ AudioEffectFlange          effect3;
 AudioMixer4                mainMixer;
 Tremolo_Effect						T_effect;
 //Flanger_Effect            F_effect;
-//Distortion_Effect         D_effect2;
+Distortion_Effect         D_effect;
 
 /////////  Audio Streaming  objects  /////////
 
@@ -86,9 +86,9 @@ Tremolo_Effect						T_effect;
 //AudioConnection          C1(input, 0, output, 0);
 //AudioConnection          C2(input, 1, output, 1);//
 
-AudioConnection            c1(input, 0, T_effect, 0);//Tremulo
+//AudioConnection            c1(input, 0, T_effect, 0);//Tremulo
 //AudioConnection            c1(input, 0, F_effect, 0);//flanger
-//AudioConnection            c2(input, 0, D_effect2, 0);//Distortion
+AudioConnection            c2(input, 0, D_effect2, 0);//Distortion
 
 //AudioConnection            c4(effect1, 0, mainMixer, 2);
 //AudioConnection            c5(effect2, 0, mainMixer, 1);
@@ -96,7 +96,9 @@ AudioConnection            c1(input, 0, T_effect, 0);//Tremulo
 
 //AudioConnection            c7(mainMixer, 0, output, 0);
 
-AudioConnection            c9(T_effect, 0, output, 0);
+//AudioConnection            c9(T_effect, 0, output, 0);
+//AudioConnection            c10(F_effect, 0, output, 0);
+AudioConnection            c11(D_effect2, 0, output, 0);
 
 DIGIMUSER mux;
 
@@ -128,8 +130,8 @@ void setup(void)
   //effect3.begin(l_delayline,12,3,3,0.5);
 //effect2.begin(l_delayline,12,3,3,0.5);
 
-
-T_effect.begin();//tremulo
+D_effect.begin();
+//T_effect.begin();//tremulo
 }
 
 
@@ -153,10 +155,12 @@ void loop(void)
   Serial.print(gain);
   delay(200);
 
+//Tremolo and Flanger range 0.0-1.0
+//Distortion range: 0-12
+   float pot1_val = float(map(gain, 0,1023,0.0,12.0));//float( gain / 1023.0);
 
-   float pot1_val = float( gain / 1023.0);
-
-  T_effect.setGain(pot1_val);
+  //T_effect.setGain(pot1_val);
+  D_effect.setGain(pot1_val);
 
 
   //map()
@@ -164,16 +168,16 @@ void loop(void)
 
   /////////////////////
 
-
-  if(gain > 512)
+/*  if(gain > 512)
   {
-    effect1.voices(3,3,0.5);
+    //effect1.voices(3,3,0.5);
     mainMixer.gain(2,1);
   }
   else
   {
     mainMixer.gain(2,0);
   }
+  */
 
   //Serial.println(gainf);
 

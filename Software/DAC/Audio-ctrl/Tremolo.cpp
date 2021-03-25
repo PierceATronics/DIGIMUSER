@@ -15,16 +15,16 @@ float Tremolo_Effect::begin()//run (float in, float a)
 
 }
 
-void Tremolo_Effect::update(void) 
+void Tremolo_Effect::update(void)
 {
 	audio_block_t* block;
 
 	block = receiveWritable(); //allocate(); is used on Teensy Example
-	
+
 	if (block) {
 		for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++) {
 			//creating the effect
-			
+
 			if(this->index < (Fs/Fc))//Fs/Fc = 44100/5
 			{
 				this->index +=1;
@@ -32,7 +32,7 @@ void Tremolo_Effect::update(void)
 			else{
 				this->index = 0;
 			}
-				
+
 			// a = intensity, i = index of the sine wave
 			tremo = (1.0 + (a * sinf((2.0 * PI *index * (Fc/Fs))))); // 40.0 = frequency 0-20Hz range
 			//tremo = (1.0 + (a * sinf((2.0 * PI *index)*10 * i))); // 40.0 = frequency 0-20Hz range
@@ -42,15 +42,17 @@ void Tremolo_Effect::update(void)
 			//applying effect to the incoming adc data
 			block->data[i] = this->float_to_int16((tremo )* audio_sample);//.25
 		}
-	
-		
+
 
 	Tremolo_Effect::transmit(block);
-	
+
 	Tremolo_Effect::release(block);
 	}
 
+
+
 }
+
 boolean Tremolo_Effect::setGain(float _gain){
 	this->a = _gain;
 	return EXIT_SUCCESS;
