@@ -88,7 +88,7 @@ Distortion_Effect         D_effect;
 
 //AudioConnection            c1(input, 0, T_effect, 0);//Tremulo
 //AudioConnection            c1(input, 0, F_effect, 0);//flanger
-AudioConnection            c2(input, 0, D_effect2, 0);//Distortion
+AudioConnection            c2(input, 0, D_effect, 0);//Distortion
 
 //AudioConnection            c4(effect1, 0, mainMixer, 2);
 //AudioConnection            c5(effect2, 0, mainMixer, 1);
@@ -98,7 +98,7 @@ AudioConnection            c2(input, 0, D_effect2, 0);//Distortion
 
 //AudioConnection            c9(T_effect, 0, output, 0);
 //AudioConnection            c10(F_effect, 0, output, 0);
-AudioConnection            c11(D_effect2, 0, output, 0);
+AudioConnection            c11(D_effect, 0, output, 0);
 
 DIGIMUSER mux;
 

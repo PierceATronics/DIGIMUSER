@@ -4,12 +4,15 @@
 
 function output = Flanger(audio,sweep_freq,sweep_range,fs)
 
-delay = 100;
+delay = 100;//ms
 
-G = 0.5;
+G = 0.5;//gain
 
 for i = delay+sweep_range:length(audio)
 
-    output(i) = audio(i) + G * audio(i-delay-round(sweep_range*sin(2*pi*i*sweep_freq/fs)));
+    output(i) = audio(i) + G * audio(i-delay-round(sweep_range*sin(2*pi*i*sweep_freq/fs))); //%needs to be an array?
 end
 output = transpose(output);
+
+//pot would adjust the delay
+//and sweep_frequency
