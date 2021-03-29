@@ -14,7 +14,7 @@ C2 = 0.75; M2 = 6000; g2=0.50;
 y2 = iircomb(x, C2, g2, M2);
 %sound(y1 + y2, fs);
 
-C = [1, 1, 1, 1];
+C = [0.25, 0.25, 0.25, 0.25];
 M = [2048, 2944, 3968, 5120];
 g = [0.75, 0.75, 0.75, 0.75];
 
@@ -25,9 +25,10 @@ c4 = iircomb(x, C(4), g(4), M(4));
 
 y = c1 + c2 + c2 + c4;
 y = y ./ max(y);
-% sound(x, fs);
-% pause(int32(length(x) * 1/fs));
+sound(x, fs);
+pause(int32(length(x) * 1/fs));
 sound(y, fs);
+audiowrite('reverb_test.wav', y, fs);
 
 
 
