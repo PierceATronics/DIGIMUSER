@@ -34,8 +34,9 @@ void Reverb::update(void){
 
             //Performs y[n] = C * x[n] - g * y[n - M]
             //mult = multiply_16tx16t_add_16bx16b((uint32_t)(packed_consts), (uint32_t)(inputs));
-            mult = (int32_t)(delayed->data[i]) * (int32_t)(this->g);
-            int32_t ad = ((int32_t)(x->data[i]) << 15) + mult;
+            int32_t mult1 = (int32_t)(x->data[i]) * (int32_t)(this->C);
+            int32_t mult2 = (int32_t)(delayed->data[i]) * (int32_t)(this->g);
+            int32_t ad = mult1 + mult2;
             x->data[i] = (int16_t)(ad >> 15);
         }
 

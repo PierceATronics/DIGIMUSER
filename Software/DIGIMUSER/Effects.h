@@ -1,2 +1,3 @@
 #pragma once
-#include "AmplifyEffect/AmplifyEffect.h"
+#include "AmplifyEffect.h"
+#include "Reverb.h"
