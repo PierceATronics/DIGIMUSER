@@ -63,7 +63,7 @@ class Reverb : public AudioStream {
 
         //Assuming 15-fractional bits
         int16_t C[4] = {0x2000, 0x2000, 0x2000, 0x2000}; //0.25
-        int16_t g[4] = {0x6000, 0x6000, 0x6000, 0x6000}; //0.75
+        int16_t g[4] = {0x4000, 0x4000, 0x4000, 0x4000}; //0.50
 
         //Allocates the memory for delay blocks.
         void _init_delayed_blocks();

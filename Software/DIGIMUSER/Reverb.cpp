@@ -49,7 +49,7 @@ void Reverb::update(void){
               //Performs y[n] = C * x[n] - g * y[n - M]
               int32_t mult1 = (int32_t)(x->data[i]) * (int32_t)(this->C[j]);
               int32_t mult2 = (int32_t)(delayed->data[i]) * (int32_t)(this->g[j]);
-              accum = mult1 + mult2 + accum;
+              accum = ((mult1 + mult2) >> 2) + accum;
             }
 
             //Store the result back in x to be sent to DAC
