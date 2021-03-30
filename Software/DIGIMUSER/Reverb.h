@@ -30,9 +30,8 @@ SOFTWARE.
 //t_delay = M / fs
 #define M_DELAY_1   2048
 #define M_DELAY_2   2944
-#define M_DELAY_3   3968
-#define M_DELAY_4   5120
-
+#define M_DELAY_3   5120
+#define M_DELAY_4 8960
 //Used to allocate memory to save delayed audio samples in audio_block_t blocks.
 #define TOTAL_NUM_DELAYED_BLOCKS  (M_DELAY_4/AUDIO_BLOCK_SAMPLES)
 
@@ -65,7 +64,7 @@ class Reverb : public AudioStream {
         int delay_amount_offsets[4];
 
         //Assuming 15-fractional bits
-        int16_t C[4] = {0x2000, 0x2000, 0x2000, 0x2000}; //0.25
+        int16_t C[4] = {0x6000, 0x6000, 0x6000, 0x6000}; //0.75
         int16_t g[4] = {0x4000, 0x4000, 0x4000, 0x4000}; //0.50 (attenuation factors);
 
         //Allocates the memory for delay blocks.
