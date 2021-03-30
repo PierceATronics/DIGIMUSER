@@ -10,21 +10,39 @@ int pot1 = 19;//A5
 int pot2 = 22;//A8
 int gainNum = 0;
 
+
+//pins connected to the rotary switch
+int RS_1 = 14;
+int RS_2 = 15;
+int RS_3 = 16;
+int RS_4 = 17;
+
+
+//Led init for Rot Switch tesing
+int LED_1 = 2;
+int LED_2 = 3;
+int LED_3 = 4;
+
+
+
 void DIGIMUSER :: dSetup(void)
 {
 
   //std::cout << "Setting up" << std::endl;
   //list
 
-  //int potentiometer2 = #;//tentative
-  //int RotSwitch = #;
 
-  //pin setup
-  //int LED = ;
   pinMode(pot1, INPUT);
   pinMode(pot2, INPUT);
   //setup
-  //digitalWrite(,LOW);
+  pinMode(RS_1, INPUT);
+  pinMode(RS_2, INPUT);
+  pinMode(RS_3, INPUT);
+  pinMode(RS_4, INPUT);
+
+  pinMode(LED_1, OUTPUT);
+  pinMode(LED_2, OUTPUT);
+  pinMode(LED_3, OUTPUT);
 
 };
 
@@ -39,16 +57,16 @@ int DIGIMUSER::getGain() {
 void adc_setup(){
 	//DIDR0
 	//DIDR2
-	
+
 	//print errors
-	
-	
-	
+
+
+
 	// Print errors, if any.
     if(adc->adc0->fail_flag != ADC_ERROR::CLEAR) {
       Serial.print("ADC0: "); Serial.println(getStringADCError(adc->adc0->fail_flag));
     }
 	adc->resetError();
-	
+
 }
 */

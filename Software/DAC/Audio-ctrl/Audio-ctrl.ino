@@ -104,8 +104,8 @@ DIGIMUSER mux;
 
 
 //defines for the flanger effect
-short l_delayline[12];
-int phase = 0;//
+//short l_delayline[12];
+//int phase = 0;//
 
 void setup(void)
 {
@@ -151,19 +151,21 @@ void loop(void)
 
   //0-1023
   analogReadResolution(10);
-  Serial.print("10 bit value: ");
-  Serial.print(gain);
-  delay(200);
+  //Serial.print("10 bit value: ");
+  //Serial.print(gain);
+  //delay(200);
 
 //Tremolo and Flanger range 0.0-1.0
 //Distortion range: 0-12
-   float pot1_val = float(map(gain, 0,1023,0.0,12.0));//float( gain / 1023.0);
+   float pot1_val = float(map(gain, 0,1023,1.0,24.0));//float( gain / 1023.0);//changed to 1.0 to avoid disabling stream
+
+   Serial.printf("unmodified value: %f  ", gain);
+   Serial.printf("pot 1 value: %f\n   ", pot1_val);
+   
+   delay(300);
 
   //T_effect.setGain(pot1_val);
   D_effect.setGain(pot1_val);
-
-
-  //map()
 
 
   /////////////////////
