@@ -4,7 +4,7 @@ clear all;
 % Author: David Pierce Walker-Howell
 % Description: IIR Comb filter reverb.
 %##################################################################
-[x, fs] = audioread('test.wav');
+[x, fs] = audioread('H_n_S_Licks_17.wav');
 x = transpose(x); x=x(1,:);
 N = (size(x)); N = N(2);
 
@@ -28,7 +28,7 @@ y = y ./ max(y);
 sound(x, fs);
 pause(int32(length(x) * 1/fs));
 sound(y, fs);
-audiowrite('reverb_test.wav', y, fs);
+%audiowrite('reverb_test.wav', y, fs);
 
 
 
