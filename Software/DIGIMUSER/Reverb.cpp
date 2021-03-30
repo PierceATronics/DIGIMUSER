@@ -87,6 +87,8 @@ Reverb::Reverb() : Reverb::AudioStream(1, input_queue_array){
     }
     
 }
+
+
 void Reverb::_init_delayed_blocks(){
 
     for(int j=0; j < TOTAL_NUM_DELAYED_BLOCKS; j++){
@@ -101,6 +103,12 @@ void Reverb::_copy_audio_block_t(audio_block_t *src, audio_block_t *dst){
         dst->data[i] = src->data[i];
     }
 
+}
+
+void Reverb::set_attenuation_factor(int16_t _atten){
+  for(int i=0; i<4; i++){
+    this->g[i] = _atten;
+  }
 }
 
 Reverb::~Reverb(){

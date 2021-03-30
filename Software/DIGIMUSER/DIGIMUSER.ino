@@ -57,5 +57,10 @@ void setup(){
 
 void loop(){
   //float pot1_val = float(analogRead(pot1_pin)) / 4096.0;
+
+  //Sample the potentiometer and cast into a 16-bits (15 fractional).
+  int16_t pot1_val = (int16_t)(analogRead(pot1_pin) << 3);
+  reverb.set_attenuation_factor(pot1_val);
+  delay(100);
   
 }
