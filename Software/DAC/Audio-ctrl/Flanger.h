@@ -28,7 +28,7 @@ public:
 private:
 
 	float index = 0;	//time index of the sine wave
-	float tremo;	//the effect
+	float flange;	//the effect
 	float y;	//the final value after mixing z with the input
 	//int index = 0;
 	float a = 0;

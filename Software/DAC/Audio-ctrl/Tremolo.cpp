@@ -48,10 +48,8 @@ void Tremolo_Effect::update(void)
 
 	Tremolo_Effect::release(block);
 	}
-
-
-
 }
+
 
 boolean Tremolo_Effect::setGain(float _gain){
 	this->a = _gain;
