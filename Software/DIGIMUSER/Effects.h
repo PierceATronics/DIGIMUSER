@@ -24,3 +24,6 @@ SOFTWARE.
 #pragma once
 #include "AmplifyEffect.h"
 #include "Reverb.h"
+#include "Tremolo.h"
+#include "Distortion.h"
+#include "Flanger.h"
